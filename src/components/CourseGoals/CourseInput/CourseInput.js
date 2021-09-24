@@ -19,6 +19,7 @@ const CourseInput = props => {
     if (enteredValue.trim().length>0) {
       props.onAddGoal(enteredValue);
       setIsValid(true)
+      setEnteredValue('')
 
     } else {
       setIsValid(false)
@@ -27,9 +28,9 @@ const CourseInput = props => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className="form-control">
-        <label style={{color: !isValid ? 'red' : '#8b005d'}}>Course Goal</label>
-        <input style={{boxShadow: !isValid ? '0 0 12px red' : 'none'}} type="text" onChange={goalInputChangeHandler} />
+      <div className={`form-control ${!isValid ? 'invalid': ''}`}>
+        <label >Course Goal</label>
+        <input type="text" value={enteredValue} onChange={goalInputChangeHandler} />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
